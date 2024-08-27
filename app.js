@@ -1,12 +1,15 @@
 const form = document.getElementById("form");
 const input = document.getElementById("input");
 const taskList = document.getElementById("task-list");
-const template = document.getElementById("template").contentEditable;
+const template = document.getElementById("template").content;
 const fragment = document.createDocumentFragment();
 
+let tasks = {
+
+}
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (localStorage.get ("tasks")) {
+    if (localStorage.getItem("tasks")) {
         tasks =JSON.parse(localStorage.getItem("tasks"))
     }
     printTasks();
@@ -23,7 +26,7 @@ form.addEventListener("submit", (event) => {
 
 const setTasks = (e) => {
 
-    if (input.value,trim() ==="") {
+    if (input.value.trim() === "") {
         console.log("Está vacío...")
         return;
     }
@@ -85,7 +88,7 @@ const printTasks = () => {
 };
 
 const btnAction = (e) => {
-    if (e.target.classList.contains("")) {
+    if (e.target.classList.contains("task_check-icon")) {
         tasks[e.target.dataset.id].state = true;
         printTasks();
     }
